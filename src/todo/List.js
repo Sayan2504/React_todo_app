@@ -1,15 +1,16 @@
 import React from 'react';
+import Task from './Task'
 
-const List = ({todo, deleteTodo}) => {
+const List = ({todo, deleteTodo, editTodo}) => {
     const list = 
         todo && todo.map(item => (
             <li key={item.id}>
-                {item.task}
-                
-                <button onClick={() =>
-                {deleteTodo(item.id)}}>
-                    Delete
-                </button>
+                <Task
+                    key={item.id}
+                    todo={item}
+                    deleteTodo={deleteTodo}
+                    editTodo={editTodo}
+                />
             </li>
     ));
     return(

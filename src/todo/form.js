@@ -1,12 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const Form = ({onSubmit}) => {
+const Form = ({onSubmit, value, buttonText}) => {
     const [text,setText] = useState([]);
 
     const changeText=(e)=>{
         setText(e.target.value)  
     };
 
+    useEffect(() => {
+        if (value) {
+          setText(value);
+        }
+      }, [value]);
     
 
     return(
@@ -17,7 +22,7 @@ const Form = ({onSubmit}) => {
                 setText("");
             }}>
                 <input type="text" value={text} onChange={changeText}/>
-                <input type="submit" value="add todo"/>
+                <input type="submit" value={buttonText || "Add Todo"}/>
             </form>
         </div>
     )

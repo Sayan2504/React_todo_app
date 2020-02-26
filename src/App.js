@@ -3,7 +3,7 @@ import './App.css';
 import Form from './todo/form'
 import List from './todo/List'
 
-function App() {
+const App = () => {
   const[todo, setTodo] = useState([])
 
   const addTask = (todo) =>{
@@ -17,11 +17,21 @@ function App() {
     setTodo(arr);
   }
 
+  const editTodo = (id, text) =>{
+    const arr = todo.map(item =>{
+      if(item.id == id) {
+        return ({id: id, task: text});
+      }
+      return item;
+    });
+    setTodo(arr);
+  }
+
   return (
     <div className="todo-main">
-        <h1>Todo List</h1>
+        <h1>Todo App</h1>
         <Form onSubmit={addTask}/>
-        <List todo={todo} deleteTodo={deleteTodo}/>
+        <List todo={todo} deleteTodo={deleteTodo} editTodo={editTodo}/>
     </div>
   );
 };
