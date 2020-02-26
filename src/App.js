@@ -9,13 +9,19 @@ function App() {
   const addTask = (todo) =>{
     setTodo(prev => prev.concat({id: Date.now(), task: todo}));
   }
-  
+
+  const deleteTodo = (id) =>{
+    const arr = todo.filter(item => {
+      if(item.id != id) return item;
+    });
+    setTodo(arr);
+  }
 
   return (
     <div className="todo-main">
         <h1>Todo List</h1>
         <Form onSubmit={addTask}/>
-        <List todo={todo}/>
+        <List todo={todo} deleteTodo={deleteTodo}/>
     </div>
   );
 };
